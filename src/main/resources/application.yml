@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+header-keys:
+  rule-key: "X-B3-URL"
+
+request-validation:
+  rules:
+    - description: "put phone service"
+      key: "post/v1/provider"
+      allow-extra-fields: false
+      fields:
+        - key: "identificationName"
+          mandatory: true
+          validators-class:
+            - com.golshadi.majid.inputvalidator.validator.IpValidator
+            - com.golshadi.majid.inputvalidator.validator.IpValidator
+        - key: "identificationType"
+          mandatory: false
+          validators-class:
+            - com.golshadi.majid.inputvalidator.validator.IpValidator
+    - description: "transfer mobile service"
+      key: "put/v1/provider"
+      allow-extra-fields: false
+      fields:
+        - key: "key1.nested_key1"
+          mandatory: true
+          validators-class:
+            - com.golshadi.majid.inputvalidator.validator.IpValidator
