@@ -1,4 +1,5 @@
 # Input-validator
+Microservice for validating request based on custom rules with plugin support.
 
 ## Features
 - Support spring boot validator

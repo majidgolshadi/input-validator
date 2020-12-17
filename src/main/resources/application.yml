@@ -8,7 +8,6 @@ request-validation:
   rules:
     - description: "put phone service"
       key: "post/v1/provider"
-      allow-extra-fields: false
       fields:
         - key: "identificationName"
           mandatory: true
@@ -20,8 +19,7 @@ request-validation:
           validators-class:
             - com.golshadi.majid.inputvalidator.validator.IpValidator
     - description: "transfer mobile service"
-      key: "put/v1/provider"
-      allow-extra-fields: false
+      key: "put/v1/provider2"
       fields:
         - key: "key1.nested_key1"
           mandatory: true
