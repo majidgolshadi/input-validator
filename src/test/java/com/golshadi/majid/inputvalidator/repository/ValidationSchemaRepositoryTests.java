@@ -3,7 +3,7 @@ package com.golshadi.majid.inputvalidator.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.golshadi.majid.inputvalidator.configuration.FieldValidator;
-import com.golshadi.majid.inputvalidator.configuration.FlattenValidationConfiguration;
+import com.golshadi.majid.inputvalidator.configuration.ValidationConfiguration;
 import com.golshadi.majid.inputvalidator.configuration.RequestValidationConfiguration;
 import com.golshadi.majid.inputvalidator.mock.AlwaysValidValidator;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class FieldRuleRepositoryTests {
+public class ValidationSchemaRepositoryTests {
 
   private final static String URL = "URL";
   private final static String REQUEST_METHOD = "URL";
@@ -19,21 +19,21 @@ public class FieldRuleRepositoryTests {
   private final static Class VALIDATOR_CLASS = AlwaysValidValidator.class;
 
   private String ruleKey;
-  private FieldRuleRepository fieldRuleRepository;
+  private ValidationSchemaRepository validationSchemaRepository;
 
   @BeforeEach
   public void setUp() {
     ruleKey = makeRuleKey(URL, REQUEST_METHOD);
     RequestValidationConfiguration configuration = makeRequestValidationConfiguration();
-    fieldRuleRepository = new FieldRuleRepository(configuration);
-    fieldRuleRepository.postConstruct();
+    validationSchemaRepository = new ValidationSchemaRepository(configuration);
+    validationSchemaRepository.postConstruct();
   }
 
   private RequestValidationConfiguration makeRequestValidationConfiguration() {
     RequestValidationConfiguration configuration = new RequestValidationConfiguration();
-    var ruleList = new ArrayList<FlattenValidationConfiguration>();
+    var ruleList = new ArrayList<ValidationConfiguration>();
 
-    var fvConfig1 = new FlattenValidationConfiguration();
+    var fvConfig1 = new ValidationConfiguration();
     fvConfig1.setKey(ruleKey);
     fvConfig1.setFields(makeFieldValidatorList(FIELD_KEY, true, VALIDATOR_CLASS));
 
@@ -63,7 +63,7 @@ public class FieldRuleRepositoryTests {
 
   @Test
   public void getRulesTest() {
-    List<FieldValidator> fieldValidatorList = fieldRuleRepository.getRules(ruleKey.toString());
+    List<FieldValidator> fieldValidatorList = validationSchemaRepository.getSchema(ruleKey.toString());
 
     assertThat(fieldValidatorList.size()).isEqualTo(1);
 

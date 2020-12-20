@@ -7,21 +7,8 @@ header-keys:
 request-validation:
   rules:
     - description: "put phone service"
-      key: "post/v1/provider"
-      fields:
-        - key: "identificationName"
-          mandatory: true
-          validators-class:
-            - com.golshadi.majid.inputvalidator.validator.IpValidator
-            - com.golshadi.majid.inputvalidator.validator.IpValidator
-        - key: "identificationType"
-          mandatory: false
-          validators-class:
-            - com.golshadi.majid.inputvalidator.validator.IpValidator
+      key: post/v1/provider
+      json-schema: jsonSchema/sampleJsonSchema.json
     - description: "transfer mobile service"
       key: "put/v1/provider2"
-      fields:
-        - key: "key1.nested_key1"
-          mandatory: true
-          validators-class:
-            - com.golshadi.majid.inputvalidator.validator.IpValidator
+      json-schema: jsonSchema/sampleJsonSchema2.json

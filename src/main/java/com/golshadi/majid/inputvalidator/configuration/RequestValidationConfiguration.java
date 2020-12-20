@@ -12,5 +12,5 @@ import org.springframework.context.annotation.Configuration;
 public class RequestValidationConfiguration {
 
   @NestedConfigurationProperty
-  public List<FlattenValidationConfiguration> rules;
+  public List<ValidationConfiguration> rules;
 }
