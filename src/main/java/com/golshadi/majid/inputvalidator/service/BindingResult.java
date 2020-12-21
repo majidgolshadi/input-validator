@@ -9,12 +9,12 @@ public class BindingResult {
 
   private final List<String> requiredError;
   private final List<String> invalidFields;
-  private final List<String> notValidateFields;
+  private final List<String> extraFields;
 
   public BindingResult() {
     this.requiredError = new ArrayList<>();
     this.invalidFields = new ArrayList<>();
-    this.notValidateFields = new ArrayList<>();
+    this.extraFields = new ArrayList<>();
   }
 
   public void addRequiredError(String fieldKey) {
@@ -25,11 +25,11 @@ public class BindingResult {
     invalidFields.add(fieldKey);
   }
 
-  public void addNotValidateFields(String key) {
-    notValidateFields.add(key);
+  public void addExtraFields(String key) {
+    extraFields.add(key);
   }
 
   public int getErrorCount() {
-    return invalidFields.size() + requiredError.size() + notValidateFields.size();
+    return invalidFields.size() + requiredError.size() + extraFields.size();
   }
 }

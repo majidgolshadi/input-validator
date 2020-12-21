@@ -11,8 +11,8 @@ public class BindingResultTests {
     String FIELD_KEY = "FIELD_KEY";
     BindingResult bindingResult = new BindingResult();
 
-    bindingResult.addNotValidateFields(FIELD_KEY);
-    assertThat(bindingResult.getNotValidateFields().get(0)).isEqualTo(FIELD_KEY);
+    bindingResult.addExtraFields(FIELD_KEY);
+    assertThat(bindingResult.getExtraFields().get(0)).isEqualTo(FIELD_KEY);
 
     bindingResult.addInvalidFields(FIELD_KEY);
     assertThat(bindingResult.getInvalidFields().get(0)).isEqualTo(FIELD_KEY);
@@ -26,7 +26,7 @@ public class BindingResultTests {
     String FIELD_KEY = "FIELD_KEY";
     BindingResult bindingResult = new BindingResult();
 
-    bindingResult.addNotValidateFields(FIELD_KEY);
+    bindingResult.addExtraFields(FIELD_KEY);
     assertThat(bindingResult.getErrorCount()).isEqualTo(1);
 
     bindingResult.addInvalidFields(FIELD_KEY);

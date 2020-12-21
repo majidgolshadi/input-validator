@@ -8,7 +8,7 @@ request-validation:
   rules:
     - description: "put phone service"
       key: post/v1/provider
-      json-schema: jsonSchema/sampleJsonSchema.json
+      json-schema: /jsonSchema/sampleJsonSchema.json
     - description: "transfer mobile service"
-      key: "put/v1/provider2"
-      json-schema: jsonSchema/sampleJsonSchema2.json
+      key: put/v1/provider2
+      json-schema: /jsonSchema/sampleJsonSchema.json
