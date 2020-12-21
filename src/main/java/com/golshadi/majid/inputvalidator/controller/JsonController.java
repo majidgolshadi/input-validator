@@ -1,10 +1,9 @@
 package com.golshadi.majid.inputvalidator.controller;
 
+import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 import com.golshadi.majid.inputvalidator.configuration.HeaderKeyConfiguration;
-import com.golshadi.majid.inputvalidator.flattener.Flattener;
-import com.golshadi.majid.inputvalidator.flattener.JsonFlattener;
-import com.golshadi.majid.inputvalidator.service.FlattenDataBinder;
-import com.golshadi.majid.inputvalidator.service.exception.UndefinedRuleException;
+import com.golshadi.majid.inputvalidator.service.Validator;
+import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,17 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class JsonController {
 
   private final HeaderKeyConfiguration headerKey;
-  private final FlattenDataBinder flattenDataBinder;
-  private final Flattener flattener;
+  private final Validator validator;
 
   public JsonController(
       HeaderKeyConfiguration headerKeyConfiguration,
-      FlattenDataBinder flattenDataBinder
-  ) {
+      Validator validator) {
     this.headerKey = headerKeyConfiguration;
-    this.flattenDataBinder = flattenDataBinder;
-
-    this.flattener = new JsonFlattener();
+    this.validator = validator;
   }
 
   @RequestMapping(
@@ -36,12 +31,11 @@ public class JsonController {
       path = "/validate")
   public void RequestValid(HttpServletRequest httpServletRequest,
       @RequestBody String requestBody)
-      throws UndefinedRuleException, ExtraFieldsException, RequiredFieldsException, InvalidFieldsException {
+      throws ExtraFieldsException, RequiredFieldsException, InvalidFieldsException, IOException, ProcessingException {
 
     var ruleKey = httpServletRequest.getHeader(headerKey.getRuleKey());
-    var flatData = flattener.flat(requestBody);
 
-    var bindingResult = flattenDataBinder.validate(ruleKey, flatData);
+    var bindingResult = validator.validate(ruleKey, requestBody);
 
     if (bindingResult.getErrorCount() < 1) {
       return;
@@ -55,8 +49,8 @@ public class JsonController {
       throw new InvalidFieldsException(bindingResult.getInvalidFields());
     }
 
-    if (!bindingResult.getNotValidateFields().isEmpty()) {
-      throw new ExtraFieldsException(bindingResult.getNotValidateFields());
+    if (!bindingResult.getExtraFields().isEmpty()) {
+      throw new ExtraFieldsException(bindingResult.getExtraFields());
     }
   }
 

@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>11</java.version>
 
-		<json-flattener.version>0.11.1</json-flattener.version>
+		<json-schema-validator.version>2.2.14</json-schema-validator.version>
 	</properties>
 
 	<dependencies>
@@ -31,9 +31,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.github.wnameless.json</groupId>
-			<artifactId>json-flattener</artifactId>
-			<version>${json-flattener.version}</version>
+			<groupId>com.github.java-json-tools</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>${json-schema-validator.version}</version>
 		</dependency>
 
 		<dependency>
