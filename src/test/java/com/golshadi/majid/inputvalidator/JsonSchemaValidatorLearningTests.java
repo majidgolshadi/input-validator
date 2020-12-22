@@ -4,18 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.fge.jackson.JsonLoader;
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
-import com.github.fge.jsonschema.core.report.ListProcessingReport;
-import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import java.io.IOException;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.junit.jupiter.api.Test;
 
 public class JsonSchemaValidatorLearningTests {
 
-  private final static String SAMPLE_SCHEMA_PATH = "/jsonSchema.json";
+  private final static String SAMPLE_SCHEMA_PATH = "/json-schema.json";
   private final static String VALID_JSON_DATA_PATH = "/valid.json";
   private final static String SINGLE_INVALID_FIELD_JSON_DATA_PATH = "/single-invalid-field.json";
   private final static String EXTRA_FIELD_JSON_DATA_PATH = "/extra-field-invalid.json";
