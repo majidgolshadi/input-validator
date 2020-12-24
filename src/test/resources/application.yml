@@ -1,0 +1,11 @@
+header-keys:
+  rule-key: "X-B3-URL"
+
+request-validation:
+  rules:
+    - description: "description 1"
+      key: v1/test/key
+      json-schema: /json-schema.json
+    - description: "description 1"
+      key: v2/test/key
+      json-schema: /json-schema-2.json
