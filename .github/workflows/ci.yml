@@ -15,5 +15,5 @@ jobs:
         run: mvn --batch-mode --update-snapshots verify
       - name: Find dir path
         run: pwd
-      - name: Find dir path
-        run: ls -lsh  
+      - name: Find jacoco
+        run: ls -lsh  target/site/jacoco
