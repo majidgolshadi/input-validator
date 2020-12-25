@@ -19,11 +19,3 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
-      - name: Find dir path
-        run: pwd
-      - uses: actions/checkout@master
-      - name: Run codacy-coverage-reporter
-        uses: codacy/codacy-coverage-reporter-action@master
-        with:
-          project-token: ${{secrets.CODACY_API_TOKEN}}
-          coverage-reports: $(`pwd`)/cobertura.xml
