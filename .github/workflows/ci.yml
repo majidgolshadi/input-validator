@@ -5,7 +5,6 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -14,3 +13,14 @@ jobs:
           java-version: '11.0.9.1'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
+
+    codacy-coverage-reporter:
+      runs-on: ubuntu-latest
+      name: codacy-coverage-reporter
+      steps:
+        - uses: actions/checkout@master
+        - name: Run codacy-coverage-reporter
+          uses: codacy/codacy-coverage-reporter-action@master
+          with:
+            project-token: ${{secrets.CODACY_API_TOKEN}}
+            coverage-reports: ../../target/site/jacoco.xml
