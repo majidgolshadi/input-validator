@@ -29,7 +29,7 @@ public class JsonController {
   @RequestMapping(
       method = {RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.PATCH},
       path = "/validate")
-  public void RequestValid(HttpServletRequest httpServletRequest,
+  public void validateRequest(HttpServletRequest httpServletRequest,
       @RequestBody String requestBody)
       throws ExtraFieldsException, RequiredFieldsException, InvalidFieldsException, IOException, ProcessingException {
 
