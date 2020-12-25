@@ -2,10 +2,7 @@ package com.golshadi.majid.inputvalidator.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.github.fge.jackson.JsonLoader;
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
-import com.github.fge.jsonschema.main.JsonSchema;
-import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.golshadi.majid.inputvalidator.configuration.RequestValidationConfiguration;
 import com.golshadi.majid.inputvalidator.configuration.ValidationConfiguration;
 import com.golshadi.majid.inputvalidator.repository.ValidationSchemaRepository;
@@ -20,14 +17,10 @@ public class ValidatorResolverTests {
   private final static String JSON_SCHEMA = "/json-schema.json";
 
   private ValidatorResolver validatorResolver;
-  private JsonSchema jsonSchema;
 
   @BeforeEach
-  public void setUp() throws IOException, ProcessingException {
-    var jsonNode = JsonLoader.fromResource(JSON_SCHEMA);
+  public void setUp() throws IOException {
     var repository = makeRepository();
-
-    jsonSchema = JsonSchemaFactory.byDefault().getJsonSchema(jsonNode);
     validatorResolver = new ValidatorResolver(repository);
   }
 
