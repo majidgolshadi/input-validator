@@ -14,13 +14,13 @@ jobs:
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
 
-    codacy-coverage-reporter:
-      runs-on: ubuntu-latest
-      name: codacy-coverage-reporter
-      steps:
-        - uses: actions/checkout@master
-        - name: Run codacy-coverage-reporter
-          uses: codacy/codacy-coverage-reporter-action@master
-          with:
-            project-token: ${{secrets.CODACY_API_TOKEN}}
-            coverage-reports: ../../target/site/jacoco.xml
+  codacy-coverage-reporter:
+    runs-on: ubuntu-latest
+    name: codacy-coverage-reporter
+    steps:
+      - uses: actions/checkout@master
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{secrets.CODACY_API_TOKEN}}
+          coverage-reports: ../../target/site/jacoco.xml
